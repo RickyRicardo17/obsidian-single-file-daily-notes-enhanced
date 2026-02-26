@@ -113,20 +113,20 @@ export default class SingleFileDailyNotes extends Plugin {
         await this.saveSettings();
     }
 
-    skipCursorPositioning = false;
-
     /**
      * Updates the daily notes file if it is opened
      * @param file - opened file
      */
     async onFileOpen(file: TFile) {
-        if (file && file.path == getDailyNotesFilePath(this.settings) && this.settings.autoCreateNoteOnFileOpen) {
-            await this.updateDailyNote(file);
+        if (
+            file &&
+            file.path == getDailyNotesFilePath(this.settings) &&
+            this.settings.autoCreateNoteOnFileOpen
+        ) {
+            const newlyCreated = await this.updateDailyNote(file);
 
-            if (!this.skipCursorPositioning) {
+            if (newlyCreated) {
                 await this.positionCursor(file);
-            } else {
-                this.skipCursorPositioning = false;
             }
         }
     }
@@ -206,17 +206,22 @@ export default class SingleFileDailyNotes extends Plugin {
     /**
      * Updates the daily notes file with today's note
      * @param file - daily notes file to update
+     * @returns true if today's note was newly created, false if it already existed
      */
-    async updateDailyNote(file: TFile) {
-        return this.app.vault.process(file, (fileContent) => {
-            const [updatedNote] = insertNoteForDate(
-                fileContent,
-                moment(),
-                this.settings,
-            );
+    async updateDailyNote(file: TFile): Promise<boolean> {
+        const fileContent = await this.app.vault.read(file);
+        const [updatedNote] = insertNoteForDate(
+            fileContent,
+            moment(),
+            this.settings,
+        );
 
-            return updatedNote;
-        });
+        if (updatedNote !== fileContent) {
+            await this.app.vault.modify(file, updatedNote);
+            return true;
+        }
+
+        return false;
     }
 
     // ------------------------------------------------------------------------
