@@ -1,17 +1,17 @@
 # Single File Daily Notes Enhanced
 
-[![GitHub Release](https://img.shields.io/github/v/release/rickyrodriguez/obsidian-single-file-daily-notes-enhanced?sort=semver&style=for-the-badge&color=%2346A758)](https://github.com/rickyrodriguez/obsidian-single-file-daily-notes-enhanced/releases/latest)
+[![GitHub Release](https://img.shields.io/github/v/release/RickyRicardo17/obsidian-single-file-daily-notes-enhanced?sort=semver&style=flat&logo=github&label=release)](https://github.com/RickyRicardo17/obsidian-single-file-daily-notes-enhanced/releases/latest)
 
 > This is a fork of **[Pranav Mangal](https://mang.al)**’s work on [Single File Daily Notes](https://github.com/pranavmangal/obsidian-single-file-daily-notes) starting at **v1.4.1**
 
 An [Obsidian](https://obsidian.md) plugin for creating and managing daily notes in a single file, with extra options on top of the original.
 
+![Showcase](images/showcase-enh.png)
+
 ## Enhancements
 
-- ![New](https://img.shields.io/static/v1?label=&message=NEW&color=brightgreen&style=for-the-badge) **Checkbox-style default entries** — In settings, turn on **Use checkboxes for default entries** so each bullet line in your default entry is written as a Markdown task (`- [ ] …`) when a new daily section is created. Lines that are already tasks are left as-is.
-- ![New](https://img.shields.io/static/v1?label=&message=NEW&color=brightgreen&style=for-the-badge) **Rollover incomplete tasks** — Optional **Rollover previous day's unchecked tasks**: pulls `- [ ]` / `* [ ]` lines from the nearest daily section in the file (prefer the day before; otherwise the next existing day), then your default entry. Checked and non-task lines stay put.
-
-![Showcase](images/showcase-enh.png)
+- ![New](https://img.shields.io/static/v1?label=&message=NEW&color=brightgreen&style=flat) **Checkbox-style default entries** — In settings, turn on **Use checkboxes for default entries** so each bullet line in your default entry is written as a Markdown task (`- [ ] …`) when a new daily section is created. Lines that are already tasks are left as-is.
+- ![New](https://img.shields.io/static/v1?label=&message=NEW&color=brightgreen&style=flat) **Rollover incomplete tasks** — Optional **Rollover previous day's unchecked tasks**: pulls `- [ ]` / `* [ ]` lines from the nearest daily section in the file (prefer the day before; otherwise the next existing day), then your default entry. Checked and non-task lines stay put.
 
 ## Features
 
@@ -57,8 +57,8 @@ You are able to configure:
 - The location of file
 - The type of headings used for daily notes
 - The date format used for daily notes
-- ![New](https://img.shields.io/static/v1?label=&message=NEW&color=brightgreen&style=for-the-badge) Optional checkboxes (task list syntax) for default new entries
-- ![New](https://img.shields.io/static/v1?label=&message=NEW&color=brightgreen&style=for-the-badge) Optional **rollover** of unchecked tasks from the previous date
+- ![New](https://img.shields.io/static/v1?label=&message=NEW&color=brightgreen&style=flat) Optional checkboxes (task list syntax) for default new entries
+- ![New](https://img.shields.io/static/v1?label=&message=NEW&color=brightgreen&style=flat) Optional **rollover** of unchecked tasks from the previous date
 
 ## Installation
 
