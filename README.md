@@ -1,10 +1,17 @@
-# Single File Daily Notes
-[![GitHub Release](https://img.shields.io/github/v/release/pranavmangal/obsidian-single-file-daily-notes?sort=semver&style=for-the-badge&color=%2346A758)](https://github.com/pranavmangal/obsidian-single-file-daily-notes/releases/latest)
-![Obsidian Downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fobsidianmd%2Fobsidian-releases%2FHEAD%2Fcommunity-plugin-stats.json&query=%24%5B'single-file-daily-notes'%5D%5B'downloads'%5D&style=for-the-badge&logo=obsidian&label=Downloads&color=%23FFBA18)
+# Single File Daily Notes Enhanced
 
-An [Obsidian](https://obsidian.md) plugin for creating and managing daily notes in a single file.
+[![GitHub Release](https://img.shields.io/github/v/release/rickyrodriguez/obsidian-single-file-daily-notes-enhanced?sort=semver&style=for-the-badge&color=%2346A758)](https://github.com/rickyrodriguez/obsidian-single-file-daily-notes-enhanced/releases/latest)
 
-![Showcase](/images/showcase.png)
+> This is a fork of **[Pranav Mangal](https://mang.al)**’s work on [Single File Daily Notes](https://github.com/pranavmangal/obsidian-single-file-daily-notes) starting at **v1.4.1**
+
+An [Obsidian](https://obsidian.md) plugin for creating and managing daily notes in a single file, with extra options on top of the original.
+
+## Enhancements
+
+- ![New](https://img.shields.io/static/v1?label=&message=NEW&color=brightgreen&style=for-the-badge) **Checkbox-style default entries** — In settings, turn on **Use checkboxes for default entries** so each bullet line in your default entry is written as a Markdown task (`- [ ] …`) when a new daily section is created. Lines that are already tasks are left as-is.
+- ![New](https://img.shields.io/static/v1?label=&message=NEW&color=brightgreen&style=for-the-badge) **Rollover incomplete tasks** — Optional **Rollover previous day's unchecked tasks**: pulls `- [ ]` / `* [ ]` lines from the nearest daily section in the file (prefer the day before; otherwise the next existing day), then your default entry. Checked and non-task lines stay put.
+
+![Showcase](images/showcase-enh.png)
 
 ## Features
 
@@ -12,7 +19,7 @@ An [Obsidian](https://obsidian.md) plugin for creating and managing daily notes 
 
 The plugin will create a new note for today automatically and select the dummy entry for immediate editing. If today's note already exists, it will try to position the cursor for appending/editing the existing note.
 
-<img src='images/editing.png' width='500'>
+
 
 The result is a single standard Markdown file:
 
@@ -34,38 +41,38 @@ This plugin has a built-in calendar view that is displayed in the sidebar. This 
 
 This calendar view can be shown/hidden using the command palette (`⌘ + P`).
 
-![Calendar View](/images/calendar-view.png)
+Calendar View
 
 ### See an outline view
 
 Since daily notes are formed by using standard Markdown headings, Obsidian's built-in outline view can be used to browse through them.
 
-![Outline View](/images/outline-view.png)
+Outline View
 
 ### Configurability
 
 You are able to configure:
 
--   The name for the daily notes file
--   The location of file
--   The type of headings used for daily notes
--   The date format used for daily notes
+- The name for the daily notes file
+- The location of file
+- The type of headings used for daily notes
+- The date format used for daily notes
+- ![New](https://img.shields.io/static/v1?label=&message=NEW&color=brightgreen&style=for-the-badge) Optional checkboxes (task list syntax) for default new entries
+- ![New](https://img.shields.io/static/v1?label=&message=NEW&color=brightgreen&style=for-the-badge) Optional **rollover** of unchecked tasks from the previous date
 
 ## Installation
 
-The plugin is available on the [official community plugins list](https://obsidian.md/plugins?id=single-file-daily-notes) maintained by Obsidian.
-
-Otherwise, the plugin can be installed via [BRAT](https://github.com/TfTHacker/obsidian42-brat).
+Install manually by copying `main.js`, `manifest.json`, and `styles.css` into `.obsidian/plugins/single-file-daily-notes-enhanced/` in your vault (create the folder if needed), or use [BRAT](https://github.com/TfTHacker/obsidian42-brat) pointed at this repository.
 
 ## Usage
 
--   Disable Obsidian's built-in core daily notes plugin from settings.
-    - This plugin does not yet interact with notes created by the core plugin, or any other community plugins designed to work with it.
-    - While keeping it enabled will not affect either plugin, it may cause confusion.
--   Open this plugin's settings to configure it to your preferences
--   Click on the ribbon icon or select "Open daily notes" via the command palette (`⌘ + P`) to create the daily notes file.
--   Once created, the file can be opened like a regular file, via the ribbon icon or the command palette.
--   Start editing!
+- Disable Obsidian's built-in core daily notes plugin from settings.
+  - This plugin does not yet interact with notes created by the core plugin, or any other community plugins designed to work with it.
+  - While keeping it enabled will not affect either plugin, it may cause confusion.
+- Open this plugin's settings to configure it to your preferences
+- Click on the ribbon icon or select "Open daily notes" via the command palette (`⌘ + P`) to create the daily notes file.
+- Once created, the file can be opened like a regular file, via the ribbon icon or the command palette.
+- Start editing!
 
 ## Why
 

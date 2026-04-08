@@ -14,6 +14,7 @@ import { VIEW_TYPE_CALENDAR } from "./constants";
 import { CalendarView } from "./ui/calendarView";
 import {
     getDailyNotesFilePath,
+    getEffectiveNoteEntry,
     getHeadingMd,
     getTodayHeading,
     insertNoteForDate,
@@ -156,11 +157,22 @@ export default class SingleFileDailyNotes extends Plugin {
             // Move to the first line of today's section
             i++;
 
-            if (lines[i] == this.settings.noteEntry) {
-                // Select the dummy entry
+            const effectiveEntry = getEffectiveNoteEntry(this.settings);
+            if (lines[i] == effectiveEntry) {
+                // Select the dummy entry (after list marker / checkbox)
+                const line = lines[i];
+                const afterBullet = line.match(/^(\s*[-*]\s+)/);
+                const afterCheckbox = line.match(
+                    /^(\s*[-*]\s+\[[ xX]\]\s+)/,
+                );
+                const prefixLen = afterCheckbox
+                    ? afterCheckbox[1].length
+                    : afterBullet
+                      ? afterBullet[1].length
+                      : 0;
                 view.editor.setSelection(
-                    { line: i, ch: 2 },
-                    { line: i, ch: lines[i].length },
+                    { line: i, ch: prefixLen },
+                    { line: i, ch: line.length },
                 );
             } else {
                 // Move cursor to the end of today's section

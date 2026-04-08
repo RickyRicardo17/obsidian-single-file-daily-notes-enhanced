@@ -14,6 +14,8 @@ export interface PluginSettings {
     noteName: string;
     noteLocation: string;
     noteEntry: string;
+    useCheckboxes: boolean;
+    rolloverPreviousDayNotes: boolean;
     autoCreateNoteOnFileOpen: boolean;
     headingType: string;
     dateFormat: string;
@@ -24,6 +26,8 @@ export const DEFAULT_SETTINGS: PluginSettings = Object.freeze({
     noteName: "Daily Notes",
     noteLocation: "",
     noteEntry: "- entry",
+    useCheckboxes: false,
+    rolloverPreviousDayNotes: false,
     autoCreateNoteOnFileOpen: true,
     headingType: "h3",
     dateFormat: "DD-MM-YYYY, dddd",
@@ -44,6 +48,8 @@ export class SettingsTab extends PluginSettingTab {
         this.fileNameSetting();
         this.filePathSetting();
         this.nodeEntrySetting();
+        this.useCheckboxesSetting();
+        this.rolloverPreviousDayNotesSetting();
         this.autoCreateNoteOnFileOpenSetting();
         this.headingTypeSetting();
         this.dateFormatSetting();
@@ -98,7 +104,39 @@ export class SettingsTab extends PluginSettingTab {
                     }),
             );
     }
-    
+
+    private useCheckboxesSetting() {
+        new Setting(this.containerEl)
+            .setName("Use checkboxes for default entries")
+            .setDesc(
+                "When enabled, new daily note sections use task list syntax (- [ ] …) for each bullet line in the default entry above.",
+            )
+            .addToggle((toggle) =>
+                toggle
+                    .setValue(this.plugin.settings.useCheckboxes)
+                    .onChange(async (value) => {
+                        this.plugin.settings.useCheckboxes = value;
+                        await this.plugin.saveSettings();
+                    }),
+            );
+    }
+
+    private rolloverPreviousDayNotesSetting() {
+        new Setting(this.containerEl)
+            .setName("Rollover previous day's unchecked tasks")
+            .setDesc(
+                "When creating a new daily section, prepend unchecked checklist items (- [ ] …) from the nearest existing day: preferably the latest day before that date, or if none exist yet, the earliest day after it (so planning a future day or backfilling still picks a neighbor). Your default entry is added after them.",
+            )
+            .addToggle((toggle) =>
+                toggle
+                    .setValue(this.plugin.settings.rolloverPreviousDayNotes)
+                    .onChange(async (value) => {
+                        this.plugin.settings.rolloverPreviousDayNotes = value;
+                        await this.plugin.saveSettings();
+                    }),
+            );
+    }
+
     private autoCreateNoteOnFileOpenSetting() {
         new Setting(this.containerEl)
             .setName("Auto-create today's daily note on file open")
