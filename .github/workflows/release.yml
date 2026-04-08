@@ -10,10 +10,13 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+                  fetch-tags: true
 
             - name: Use Node.js
-              uses: actions/setup-node@v3
+              uses: actions/setup-node@v4
               with:
                   node-version: "18.x"
 
@@ -26,9 +29,17 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
+                  set -euo pipefail
                   tag="${GITHUB_REF#refs/tags/}"
+                  base=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || true)
+                  if [ -z "$base" ]; then
+                    base="1.4.1"
+                  fi
+                  repo="${{ github.repository }}"
+                  url="https://github.com/${repo}/compare/${base}...${tag}"
+                  notes="[Changes](${url})"
 
                   gh release create "$tag" \
                     --title="$tag" \
-                    --draft \
+                    --notes="$notes" \
                     main.js manifest.json styles.css
