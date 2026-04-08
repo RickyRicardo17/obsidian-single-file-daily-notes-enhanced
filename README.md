@@ -1,6 +1,6 @@
 # Single File Daily Notes Enhanced
 
-[![GitHub Release](https://img.shields.io/github/v/release/RickyRicardo17/obsidian-single-file-daily-notes-enhanced?sort=semver&style=flat&logo=github&label=release)](https://github.com/RickyRicardo17/obsidian-single-file-daily-notes-enhanced/releases/latest)
+[![GitHub Release](https://img.shields.io/github/v/release/RickyRicardo17/obsidian-single-file-daily-notes-enhanced?style=flat)](https://github.com/RickyRicardo17/obsidian-single-file-daily-notes-enhanced/releases/latest)
 
 > This is a fork of **[Pranav Mangal](https://mang.al)**’s work on [Single File Daily Notes](https://github.com/pranavmangal/obsidian-single-file-daily-notes) starting at **v1.4.1**
 
